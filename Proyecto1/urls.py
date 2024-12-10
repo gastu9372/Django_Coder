@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# Es buena practica escribir todas las funciones 1x1, buena practica lo explicito
+from app_coder.views import index, cursos, profesores, alumnos, entregables
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('inicio/', index),
+    path('cursos/', cursos),
+    path('profesores/', profesores),
+    path('alumnos/', alumnos),
+    path('entregables/', entregables),
 ]
