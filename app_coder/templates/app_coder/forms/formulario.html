@@ -5,7 +5,8 @@
 <div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-4">
-            <form action="" method="POST">
+
+            {% comment %} <form action="" method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label class="form-label">Curso</label>
@@ -13,10 +14,11 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Comisión</label>
-                    <input name="comision" type="text" class="form-control">
+                    <input name="comision" type="number" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Crear curso</button>          
             </form>
+            {% endcomment %}
         </div>
     </div>
 </div>

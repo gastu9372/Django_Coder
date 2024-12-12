@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Curso, Alumnos, Profesores, Entregables
+from .models import Vtuber, User, Post, Moderator
 
 # Register your models here.
 
-admin.site.register(Curso)
-admin.site.register(Alumnos)
-admin.site.register(Profesores)
-admin.site.register(Entregables)
+admin.site.register(Vtuber)
+admin.site.register(User)
+admin.site.register(Moderator)
+admin.site.register(Post)

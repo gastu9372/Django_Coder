@@ -3,9 +3,9 @@ from django.urls import path
 # Es buena practica escribir todas las funciones 1x1, buena practica lo explicito
 urlpatterns = [
     path('inicio/', index, name="Inicio"),
-    path('cursos/', cursos, name ="Cursos"),
-    path('profesores/', profesores, name="Profesores"),
-    path('alumnos/', alumnos, name="Alumnos"),
-    path('entregables/', entregables, name="Entregas"),
-    path('formulario/', formulario_curso, name="Formulario")
+    path('vtubers/', vtubers, name ="Vtubers"),
+    path('mods/', mods, name="Mods"),
+    path('users/', users, name="Users"),
+    path('posts/', posts, name="Posts"),
+    path('formulario/', formulario_curso_api, name="Formulario")
 ]

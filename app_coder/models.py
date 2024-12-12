@@ -1,22 +1,22 @@
 from django.db import models
 
 # Create your models here.
-class Curso(models.Model):
+class Vtuber(models.Model):
     nombre = models.CharField(max_length=40)
-    comision = models.IntegerField()
+    company = models.IntegerField()
     
     def __str__(self):
-        return f"{self.nombre} - comision: {self.comision}"
+        return f"{self.nombre} - Compañia: {self.company}"
 
-class Alumnos(models.Model):
+class User(models.Model):
     nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
+    tag = models.CharField(max_length=30)
     email = models.EmailField()
     
     def __str__(self):
-        return f"Alumno: {self.nombre} {self.apellido}"
+        return f"Username: {self.nombre} #{self.apellido}"
 
-class Profesores(models.Model):
+class Moderator(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     email = models.EmailField()
@@ -25,10 +25,11 @@ class Profesores(models.Model):
     def __str__(self):
         return f"Profesor: {self.nombre} {self.apellido} - Profesion: {self.profesion}"
 
-class Entregables (models.Model):
+class Post(models.Model):
     nombre =models.CharField(max_length=30)
     fecha_de_entrega = models.DateField()
     entregado = models.BooleanField()
-    
+    #foto = models.ImageField(upload_to='posts/', null=True, blank=True)
+    # La foto es algo a implementar todavia
     def __str__(self):
         return f"Entrega: {self.nombre} / {self.fecha_de_entrega} / {self.entregado}"
