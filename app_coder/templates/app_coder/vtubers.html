@@ -2,10 +2,40 @@
 {% load static %}
 
 {% block Title %}
-Cursos | La casa de Gastu
+Vtubers | VtuberWorld
 {% endblock Title %}
 
 {% block content %}
-<h1>Estos son los cursos</h1>
+<h1>Los talentos de los que tenemos registro!</h1>
+
+<h2 class="text-center mt-2">Buscar Vtuber</h2>
+<!-- Formulario de búsqueda -->
+<div class="d-flex flex-column align-items-center mb-2">
+    <form action="" method="GET">
+        <input type="text" name="q" placeholder="Buscar..." required>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row d-flex align-items-stretch">
+        {% for vtuber in vtubers %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100"> <!-- Clase h-100 asegura que todas tengan la misma altura -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ vtuber.nombre }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ vtuber.company }}</h6>
+                    <p class="card-text">{{ vtuber.descripcion }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
 
 {% endblock content %}

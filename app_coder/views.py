@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.db.models import Q
 
+from .forms import post_vtuber
 from .models import Vtuber
 
 # Create your views here.
@@ -8,7 +10,14 @@ def index(request):
     return render(request, "app_coder/index.html")
 
 def vtubers(request):
-    return render(request, "app_coder/vtubers.html")
+    vtubers = Vtuber.objects.all()
+    query = request.GET.get('q')
+    if query:
+        vtubers = Vtuber.objects.filter(nombre__icontains=query) | Vtuber.objects.filter(company__icontains=query)
+    else:
+        vtubers = Vtuber.objects.all()
+        
+    return render(request, "app_coder/vtubers.html", {"vtubers":vtubers})
 
 def mods(request):
     return render(request, "app_coder/mods.html")
@@ -19,14 +28,18 @@ def users(request):
 def posts(request):
     return render(request, "app_coder/posts.html")
 
-# def formulario_curso(request):
-#     if request.method == "POST":
-#         curso = Curso(nombre=request.POST["curso"], comision=request.POST["comision"])
-#         print(curso)
-#         curso.save()
-#         return redirect(cursos)
-#     else:
-#         return render(request, "app_coder/forms/formulario.html")
-
-def formulario_curso_api(request):
-    return render(request, "app_coder/forms/formulario.html")
+def formulario_vtuber_api(request):
+    
+    if request.method == "POST":
+        post_vtuber_form = post_vtuber(request.POST)
+        if post_vtuber_form.is_valid():
+            informacion_limpia = post_vtuber_form.cleaned_data
+            vtuber = Vtuber(nombre=informacion_limpia["nombre"], company=informacion_limpia["company"], descripcion=informacion_limpia["descripcion"])
+            vtuber.save()
+            return redirect("Vtubers")
+    else:
+        post_vtuber_form = post_vtuber()
+        
+    
+    contexto= {"post_vtuber": post_vtuber_form}
+    return render(request, "app_coder/forms/formulario.html", contexto)
