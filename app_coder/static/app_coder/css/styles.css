@@ -1817,12 +1817,12 @@ progress {
 .table-primary {
   --bs-table-color: #000;
   --bs-table-bg: #fccee4;
-  --bs-table-border-color: #e3b9cd;
-  --bs-table-striped-bg: #efc4d9;
+  --bs-table-border-color: #65b0ee;
+  --bs-table-striped-bg: #65b0ee;
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #e3b9cd;
+  --bs-table-active-bg: #65b0ee;
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #e9bfd3;
+  --bs-table-hover-bg: #65b0ee;
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -1831,12 +1831,12 @@ progress {
 .table-secondary {
   --bs-table-color: #000;
   --bs-table-bg: #ffe1cc;
-  --bs-table-border-color: #e6cbb8;
+  --bs-table-border-color: #65b0ee;
   --bs-table-striped-bg: #f2d6c2;
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #e6cbb8;
+  --bs-table-active-bg: #65b0ee;
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #ecd0bd;
+  --bs-table-hover-bg: #65b0ee;
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -2022,9 +2022,9 @@ progress {
 .form-control:focus {
   color: #212529;
   background-color: #fff;
-  border-color: #f784bc;
+  border-color: #65b0ee;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(238, 9, 121, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(109, 201, 255, 0.25);
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;
@@ -6657,7 +6657,7 @@ textarea.form-control-lg {
 
 .text-bg-primary {
   color: #fff !important;
-  background-color: RGBA(238, 9, 121, var(--bs-bg-opacity, 1)) !important;
+  background-color: #31aae1 !important;
 }
 
 .text-bg-secondary {
@@ -8127,7 +8127,7 @@ textarea.form-control-lg {
 
 .bg-primary {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+  background-color: #31aae1 !important;
 }
 
 .bg-secondary {
@@ -10971,3 +10971,5 @@ header.masthead .bg-circle-4 {
   padding: 10px; /* Espaciado interno */
   border-radius: 5px; /* Bordes redondeados */
 }
+
+

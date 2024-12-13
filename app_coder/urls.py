@@ -7,5 +7,7 @@ urlpatterns = [
     path('mods/', mods, name="Mods"),
     path('users/', users, name="Users"),
     path('posts/', posts, name="Posts"),
-    path('formulario/', formulario_vtuber_api, name="Formulario")
+    path('formulario/', formulario_vtuber_api, name="Formulario"),
+    path('del_vtuber/<int:id>', eliminar_vtuber, name="Eliminar"),
+    path('edit_vtuber/<int:id>', editar_vtuber, name="Editar")
 ]

@@ -1,6 +1,7 @@
 from django import forms
+from .models import Vtuber
 
-class post_vtuber(forms.Form):
-    nombre = forms.CharField( max_length= 40, required=False)
-    company = forms.CharField(max_length=30)
-    descripcion = forms.CharField( max_length=100, required=False)
+class post_vtuber(forms.ModelForm):
+    class Meta:
+        model = Vtuber
+        fields = ['nombre', 'company', 'descripcion', 'foto']
