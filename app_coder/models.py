@@ -5,6 +5,7 @@ class Vtuber(models.Model):
     nombre = models.CharField(max_length=40)
     company = models.CharField(max_length=30)
     descripcion = models.CharField(max_length= 100)
+    foto = models.ImageField(upload_to='vtubers_photos/', null=True, blank=True)
     
     def __str__(self):
         return f"{self.nombre} - Compañia: {self.company} - Descripcion: {self.descripcion}"
@@ -21,7 +22,7 @@ class Moderator(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     email = models.EmailField()
-    profesion = models.CharField(max_length=30)
+
     
     def __str__(self):
         return f"Profesor: {self.nombre} {self.apellido} - Profesion: {self.profesion}"

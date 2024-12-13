@@ -31,10 +31,10 @@ def posts(request):
 def formulario_vtuber_api(request):
     
     if request.method == "POST":
-        post_vtuber_form = post_vtuber(request.POST)
+        post_vtuber_form = post_vtuber(request.POST, request.FILES)
         if post_vtuber_form.is_valid():
             informacion_limpia = post_vtuber_form.cleaned_data
-            vtuber = Vtuber(nombre=informacion_limpia["nombre"], company=informacion_limpia["company"], descripcion=informacion_limpia["descripcion"])
+            vtuber = Vtuber(nombre=informacion_limpia["nombre"], company=informacion_limpia["company"], descripcion=informacion_limpia["descripcion"], foto=informacion_limpia["foto"])
             vtuber.save()
             return redirect("Vtubers")
     else:

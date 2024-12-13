@@ -10919,20 +10919,55 @@ header.masthead .bg-circle-4 {
     font-size: 4rem;
   }
 }
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Asegura que el contenido se distribuya de forma equilibrada */
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  min-height: 200px;
+/* Estilo para centrar las cartas y espaciarlas correctamente */
+.container {
+  max-width: 1200px; /* Define un ancho máximo para centrar el contenido */
+  padding: 0 15px; /* Espaciado con los bordes */
+  margin-bottom: 20px; /* Asegura un espacio uniforme con el footer */
 }
 
-.card-text {
-  flex-grow: 1; /* Asegura que el texto ocupe el espacio disponible */
+/* Estilo general de las cartas */
+.card {
+  position: relative;
+  overflow: hidden; /* Oculta el contenido que no cabe */
+  transition: transform 0.3s ease; /* Transición suave en hover */
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Escala la carta ligeramente al pasar el mouse */
+}
+
+/* Imágenes dentro de las cartas */
+.card-img-top {
+  height: 200px; /* Tamaño uniforme para las imágenes */
+  object-fit: cover; /* Ajusta las imágenes sin deformarlas */
+  width: 100%;
+}
+
+/* Nombre y compañía (siempre visibles) */
+.card-body h5, /* Nombre */
+.card-body h6 { /* Compañía */
+  margin: 0;
+  text-align: center;
+}
+
+/* Descripción (inicialmente oculta) */
+.card-body .description {
+  opacity: 0; /* Oculta el texto inicialmente */
+  height: 0; /* Elimina espacio */
+  overflow: hidden; /* Oculta contenido extra */
+  transition: opacity 0.3s ease, height 0.3s ease; /* Suaviza la transición */
+}
+
+/* Mostrar descripción al hacer hover */
+.card:hover .description {
+  opacity: 1; /* Hace visible el texto */
+  height: auto; /* Ajusta el tamaño al contenido */
+  margin-top: 10px; /* Añade espacio entre la compañía y la descripción */
+  text-align: center;
+}
+.card-body .description {
+  background-color: rgba(0, 0, 0, 0.05); /* Fondo claro para resaltar */
+  padding: 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
 }
