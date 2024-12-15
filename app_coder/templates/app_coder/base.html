@@ -32,13 +32,18 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url "Inicio" %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url "Vtubers" %}">Vtubers</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "Mods" %}">Mods</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "Users" %}">Users</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "Posts" %}">Posts</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "Formulario" %}">Formulario</a></li>
 
-                        <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "Login" %}">Log In</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url "Mods" %}">Mods</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url "Users" %}">Users</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url "Posts" %}">Posts</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url "Formulario" %}">Formulario</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url "Logout" %}">Log Out</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url "Register" %}">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url "Login" %}">Log In</a></li>
+                        {% endif %}
+
 
                     </ul>
                 </div>
