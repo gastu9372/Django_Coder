@@ -12,11 +12,11 @@ class Vtuber(models.Model):
 
 class User(models.Model):
     nombre = models.CharField(max_length=30)
-    tag = models.CharField(max_length=30)
+    tag = models.IntegerField()
     email = models.EmailField()
     
     def __str__(self):
-        return f"Username: {self.nombre} #{self.apellido}"
+        return f"Username: {self.nombre} #{self.tag}"
 
 class Moderator(models.Model):
     nombre = models.CharField(max_length=30)

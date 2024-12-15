@@ -9,5 +9,6 @@ urlpatterns = [
     path('posts/', posts, name="Posts"),
     path('formulario/', formulario_vtuber_api, name="Formulario"),
     path('del_vtuber/<int:id>', eliminar_vtuber, name="Eliminar"),
-    path('edit_vtuber/<int:id>', editar_vtuber, name="Editar")
+    path('edit_vtuber/<int:id>', editar_vtuber, name="Editar"),
+    path("login/", login_view, name = "Login" ),
 ]

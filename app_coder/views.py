@@ -1,12 +1,26 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.db.models import Q
+from django.contrib.auth import login, authenticate
 
 from .forms import post_vtuber
 from .models import Vtuber
 
 
 # Create your views here.
+
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("Inicio")
+    else:
+        return render(request, "app_coder/forms/login.html")
+
+
 def index(request):
     return render(request, "app_coder/index.html")
 
@@ -34,8 +48,6 @@ def formulario_vtuber_api(request):
     if request.method == "POST":
         post_vtuber_form = post_vtuber(request.POST, request.FILES)
         if post_vtuber_form.is_valid():
-            #informacion_limpia = post_vtuber_form.cleaned_data
-            #vtuber = Vtuber(nombre=informacion_limpia["nombre"], company=informacion_limpia["company"], descripcion=informacion_limpia["descripcion"], foto=informacion_limpia["foto"])
             post_vtuber_form.save()
             return redirect("Vtubers")
     else:

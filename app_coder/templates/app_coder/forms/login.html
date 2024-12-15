@@ -1,0 +1,48 @@
+{% extends "app_coder/base.html" %}
+{% load static %}
+
+{% block Title %}
+Login | VtuberWorld
+{% endblock Title %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Log In</h4>
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST" enctype="multipart/form-data"> <!-- Añadido enctype -->
+                        {% csrf_token %}
+                        
+                        <!-- Nombre -->
+                        <div class="mb-3">
+                            <label class="form-label" >Nombre</label>
+                            <input type="text" name="username" class="form-control" placeholder= "Ingrese su nombre de usuario" required>
+                        </div>
+                        
+                        <!-- Contraseña -->
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" name="password"  class="form-control" placeholder="Ingresa la contraseña required" required>
+                        </div>
+                        
+                        <!-- Botón de envío -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Ingresar sesion</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+
