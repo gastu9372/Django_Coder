@@ -1,0 +1,33 @@
+# Esta hecho en base a lo que me dijo chatGPT cuando le pase la estructura del proyecto porque no se como funciona el .gitignore
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Base de datos SQLite local
+db.sqlite3
+
+# Configuraciones sensibles
+*.env
+settings_local.py
+
+# Archivos estáticos recopilados
+staticfiles/
+media/
+
+# Archivos de logs
+*.log
+
+# Configuraciones de editores y sistemas
+.vscode/
+.idea/
+.DS_Store
+
+# Archivos temporales y swap
+*.swp
+*.tmp
+
+# Archivos de compilación
+*.bak
