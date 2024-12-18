@@ -29,9 +29,11 @@ Login | VtuberWorld
                             <label class="form-label">Contraseña</label>
                             <input type="password" name="password"  class="form-control" placeholder="Ingresa la contraseña required" required>
                         </div>
-                        
+
+                        <input type="hidden" name="next" value="{{ next }}">
                         <!-- Botón de envío -->
                         <div class="text-center">
+
                             <button type="submit" class="btn btn-primary">Ingresar sesion</button>
                         </div>
                     </form>
