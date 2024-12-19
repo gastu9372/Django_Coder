@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Vtuber(models.Model):
@@ -10,7 +11,7 @@ class Vtuber(models.Model):
     def __str__(self):
         return f"{self.nombre} - Compañia: {self.company} - Descripcion: {self.descripcion}"
 
-class User(models.Model):
+class Usuario(models.Model):
     nombre = models.CharField(max_length=30)
     tag = models.IntegerField()
     email = models.EmailField()
@@ -35,3 +36,7 @@ class Post(models.Model):
     # La foto es algo a implementar todavia
     def __str__(self):
         return f"Entrega: {self.nombre} / {self.fecha_de_entrega} / {self.entregado}"
+    
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to="profile_picture/", null = True, blank= True)

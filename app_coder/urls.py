@@ -1,7 +1,7 @@
 from app_coder import views
 from django.urls import path
 
-# Es buena practica escribir todas las funciones 1x1, buena practica lo explicito
+
 urlpatterns = [
     # Inicio
     path('inicio/', views.index, name="Inicio"),
@@ -21,5 +21,10 @@ urlpatterns = [
     path("login/", views.login_view, name = "Login" ),
     path("logout/", views.user_logout, name = "Logout" ),
     path("register/", views.register_view, name = "Register" ),
+    
+    # Perfil
+    path("perfil/", views.show_profile, name="Perfil"),
+    path("editar-perfil/", views.edit_profile, name="edit-perfil"),
+    path("change-password/", views.change_password, name="change-password"),
     
 ]

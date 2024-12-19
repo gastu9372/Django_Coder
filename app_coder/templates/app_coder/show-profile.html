@@ -1,0 +1,36 @@
+{% extends "app_coder/base.html" %}
+{% load static %}
+
+{% block Title %}
+Perfil | VtuberWorld
+{% endblock Title %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Perfil</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Usuario: {{ user.username}}</h5>
+                        <h5 class="card-title">Nombre: {{ user.first_name | default:"Ingresa tu nombre" }}</h5>
+                        <h5 class="card-title">Apellido: {{ user.last_name | default:"Ingresa tu apellido"}}</h5>
+                        <h5 class="card-title">Email: {{ user.email | default:"Ingresa tu email"}}</h5>
+                        <img src="{{ user.profile.photo.url }}" class="card-img-bottom" alt="Foto de {{ user.username }}" >
+
+
+                        <a href="{% url 'edit-perfil' %}" class="btn btn-warning">Editar</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

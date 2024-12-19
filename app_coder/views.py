@@ -1,33 +1,62 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.db.models import Q
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm
+
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+
+
 from django.shortcuts import get_object_or_404
 
 
-from .forms import post_vtuber
-from .models import Vtuber
+from .forms import post_vtuber, UserUpdateForm, UserProfileForm
+from .models import Vtuber, Profile
 
 
 # Create your views here.
 
-# def login_view(request):
-#     if request.method == "POST":
-#         username = request.POST.get("username")
-#         password = request.POST.get("password")
-#         user = authenticate(request, username=username, password=password)
-#         if user is not None:
-#             login(request, user)
-#             next_url = request.POST.get('next') or 'Inicio'
-#             return redirect(next_url)
-#         else:
-#             return render(request, "app_coder/forms/login.html", {"error": "Usuario o contraseña incorrectos"})
-#     else:
-#         next_url = request.GET.get('next', '')
-#         return render(request, "app_coder/forms/login.html")
+@login_required
+def show_profile(request):
+    return render(request, "app_coder/show-profile.html")
+
+@login_required
+def edit_profile(request):
+    user = request.user
+    
+    profile, _ = Profile.objects.get_or_create(user=user)
+    
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect("Perfil")
+    else:
+        user_form = UserUpdateForm(instance=user)
+        profile_form = UserProfileForm(instance=profile)  
+    
+    return render(request, "app_coder/forms/edit-profile.html", {"user_form": user_form, "profile_form": profile_form})
+
+@login_required
+def change_password(request):
+    user = request.user
+    if request.method == "POST":
+        form_password = PasswordChangeForm(user)
+        if form_password.is_valid():
+            form_password.save()
+            update_session_auth_hash(request, user)
+            return redirect("Perfil")
+        else:
+            print("Error")
+    else:
+        form_password = PasswordChangeForm()
+        
+    return render(request, "app_coder/forms/change-password.html", {"form_password": form_password})
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
