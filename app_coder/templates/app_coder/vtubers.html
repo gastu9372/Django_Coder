@@ -5,19 +5,14 @@
 Vtubers | VtuberWorld
 {% endblock Title %}
 
+{% block content_header %}
+
+{% endblock content_header %}
+
 {% block content %}
 <h1>Los talentos de los que tenemos registro!</h1>
 
 <h2 class="text-center mt-2">Buscar Vtuber</h2>
-
-{% comment %} {% if request.user.is_staff %}
-    <div class="admin-buttons">
-        <a href="{% url 'Formulario' %}" class="btn btn-success">Agregar VTuber</a>
-        <a href="{% url 'Editar-vtuber'  vtuber.id %}" class="btn btn-warning">Editar VTuber</a>
-        <a href="{% url 'Eliminar-vtuber' %}" class="btn btn-danger">Borrar VTuber</a>
-    </div>
-{% endif %} {% endcomment %}
-
 
 <!-- Formulario de búsqueda -->
 <div class="d-flex flex-column align-items-center mb-2">

@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.db.models import Q
 
+from django.contrib import messages
+
 from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
@@ -34,6 +36,7 @@ def edit_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            messages.success(request, "Perfil editado con exito")
             return redirect("Perfil")
     else:
         user_form = UserUpdateForm(instance=user)
@@ -49,11 +52,12 @@ def change_password(request):
         if form_password.is_valid():
             form_password.save()
             update_session_auth_hash(request, user)
+            messages.success(request, "Contraseña cambiada con exito")
             return redirect("Perfil")
         else:
-            print("Error")
+            messages.error(request, "Error al cambiar la contraseña. Revisa los campos.")
     else:
-        form_password = PasswordChangeForm()
+        form_password = PasswordChangeForm(user)
         
     return render(request, "app_coder/forms/change-password.html", {"form_password": form_password})
 
