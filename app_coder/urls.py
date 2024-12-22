@@ -4,7 +4,7 @@ from django.urls import path
 
 urlpatterns = [
     # Inicio
-    path('inicio/', views.index, name="Inicio"),
+    path('', views.index, name="Inicio"),
     
     # Relacionados a usuarios
     path('mods/', views.mods, name="Mods"),

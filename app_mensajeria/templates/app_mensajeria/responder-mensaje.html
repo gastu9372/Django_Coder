@@ -1,0 +1,47 @@
+{% extends "app_coder/base.html" %}
+{% block Title %}
+Mensajes | VtuberWorld
+{% endblock Title %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Responder Mensaje</h1>
+    <div class="container my-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white text-center">
+                <h5 class="mb-0">Mensaje Original</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label"><strong>De:</strong></label>
+                    <input type="text" class="form-control" value="{{ mensaje.remitente.username }}" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><strong>Mensaje:</strong></label>
+                    <textarea class="form-control" rows="5" disabled>{{ mensaje.contenido }}</textarea>
+                </div>
+                <div class="mb-3 text-muted">
+                    <label class="form-label"><strong>Fecha:</strong></label>
+                    <input type="text" class="form-control" value="{{ mensaje.fecha_envio }}" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<div class="container my-4">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="destinatario" class="form-label">Responder a:</label>
+            <input type="text" id="destinatario" class="form-control" value="{{ mensaje.remitente.username }}" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="contenido" class="form-label">Mensaje:</label>
+            <textarea id="contenido" name="contenido" class="form-control" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+
+{% endblock content %}
+

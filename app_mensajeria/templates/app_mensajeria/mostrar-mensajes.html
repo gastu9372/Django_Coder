@@ -1,0 +1,50 @@
+{% extends 'app_coder/base.html' %}
+
+{% block Title %}
+Mensajes | VtuberWorld
+{% endblock Title %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row text-center mb-4">
+        <div class="col-md-6">
+            <a href="{% url 'enviar-mensaje' %}" class="btn btn-success btn-lg shadow-sm w-100">Enviar Nuevo Mensaje</a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'mensajes-enviados' %}" class="btn btn-success btn-lg shadow-sm w-100">Mensajes enviados</a>
+        </div>
+        <h1 class="text-center mb-4"> Mensajes Recibidos</h1>
+    </div>
+    
+
+    {% if mensajes %}
+        <div class="row justify-content-center">
+            {% for mensaje in mensajes %}
+                <div class="col-md-8">
+                    <div class="card mb-3 border shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">De: {{ mensaje.remitente }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Mensaje:</strong> {{ mensaje.contenido }}</p>
+                            <p class="card-text text-muted">
+                                <small><strong>Fecha:</strong> {{ mensaje.fecha_envio }}</small>
+                            </p>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="{% url 'eliminar-mensaje' mensaje.id %}" class="btn btn-danger">Eliminar</a>
+                            <a href="{% url 'responder-mensaje' mensaje.id %}" class="btn btn-primary">Responder</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            No hay mensajes.
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock content %}
