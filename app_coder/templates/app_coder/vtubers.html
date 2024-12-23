@@ -10,7 +10,7 @@ Vtubers | VtuberWorld
 {% endblock content_header %}
 
 {% block content %}
-<h1>Los talentos de los que tenemos registro!</h1>
+<h1 class="text-center mb-4">Los talentos de los que tenemos registro!</h1>
 
 <h2 class="text-center mt-2">Buscar Vtuber</h2>
 
@@ -21,7 +21,7 @@ Vtubers | VtuberWorld
         <button type="submit">Buscar</button>
     </form>
 </div>
-
+<div class="page-vtubers">
 <div class="container py-5">
     {% if user.is_staff %}
     <div class="text-center mb-4">
@@ -48,6 +48,7 @@ Vtubers | VtuberWorld
         </div>
         {% endfor %}
     </div>
+</div>
 </div>
 
 

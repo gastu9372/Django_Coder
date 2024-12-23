@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'app_coder',
-    'app_mensajeria'
+    'app_mensajeria',
+    'app_posts',
 ]
 
 MIDDLEWARE = [

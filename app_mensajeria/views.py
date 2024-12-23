@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from .models import Mensaje
 # Create your views here.
 
+@login_required
 def enviar_mensaje(request):
     
     usuarios = User.objects.exclude(username= request.user.username)
@@ -17,23 +19,27 @@ def enviar_mensaje(request):
     
     return render(request, "app_mensajeria/enviar-mensaje.html", {"usuarios": usuarios})
 
+@login_required
 def mostrar_mensajes(request):
     
     mensajes = Mensaje.objects.filter(destinatario=request.user).order_by("-fecha_envio")
     
     return render(request, 'app_mensajeria/mostrar-mensajes.html', {"mensajes": mensajes})
 
+@login_required
 def mensajes_enviados(request):
     
     mensajes = Mensaje.objects.filter(remitente=request.user).order_by("-fecha_envio")
     
     return render(request, 'app_mensajeria/mensajes-enviados.html', {"mensajes": mensajes})
 
+@login_required
 def eliminar_mensajes(request, id):
     mensaje = Mensaje.objects.get(id=id)
     mensaje.delete()
     return redirect("mostrar-mensajes")
 
+@login_required
 def responder_mensaje(request, id):
     mensaje = Mensaje.objects.get(id=id)
     if request.method == "POST":

@@ -7,6 +7,37 @@ Users | VtuberWorld
 
 {% endblock content_header %}
 {% block content %}
-<h1>Algunos fans de las vtubers!</h1>
+<div class="container my-4">
+    <h1 class="text-center mb-4">Usuarios Registrados</h1>
+
+    {% if usuarios %}
+        <div class="row justify-content-center g-4">
+            {% for usuario in usuarios %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card shadow-sm position-relative user-card"> <!-- Clase especial -->
+                        <div class="profile-photo text-center mt-3">
+                            {% if usuario.profile.photo %}
+                                <img src="{{ usuario.profile.photo.url }}" class="rounded-circle" alt="Foto de {{ usuario.username }}" style="width: 120px; height: 120px; object-fit: cover;">
+                            {% else %}
+                                <img src="{% static 'default-avatar.jpg' %}" class="rounded-circle" alt="Avatar por defecto" style="width: 120px; height: 120px; object-fit: cover;">
+                            {% endif %}
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ usuario.username }}</h5>
+                        </div>
+                        <!-- Contenedor del hover -->
+                        <div class="hover-overlay d-flex justify-content-center align-items-center">
+                            <a href="{% url 'enviar-mensaje'%}" class="btn btn-outline-light">Enviar mensaje</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No hay usuarios registrados.</p>
+    {% endif %}
+</div>
+
+
 
 {% endblock content %}

@@ -246,11 +246,11 @@ sup {
 }
 
 a {
-  color: var(--bs-link-color);
+  color: #4d38ef;
   text-decoration: underline;
 }
 a:hover {
-  color: var(--bs-link-hover-color);
+  color: #3323a8;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -1816,7 +1816,7 @@ progress {
 
 .table-primary {
   --bs-table-color: #000;
-  --bs-table-bg: #fccee4;
+  --bs-table-bg: #31aae1;
   --bs-table-border-color: #65b0ee;
   --bs-table-striped-bg: #65b0ee;
   --bs-table-striped-color: #000;
@@ -2806,11 +2806,7 @@ textarea.form-control-lg {
     transition: none;
   }
 }
-.btn:hover {
-  color: var(--bs-btn-hover-color);
-  background-color: var(--bs-btn-hover-bg);
-  border-color: var(--bs-btn-hover-border-color);
-}
+
 .btn-check + .btn:hover {
   color: var(--bs-btn-color);
   background-color: var(--bs-btn-bg);
@@ -2828,11 +2824,7 @@ textarea.form-control-lg {
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
-  color: var(--bs-btn-active-color);
-  background-color: var(--bs-btn-active-bg);
-  border-color: var(--bs-btn-active-border-color);
-}
+
 .btn-check:checked + .btn:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .btn:first-child:active:focus-visible, .btn.active:focus-visible, .btn.show:focus-visible {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
@@ -2863,19 +2855,11 @@ textarea.form-control-lg {
 
 .btn-secondary {
   --bs-btn-color: #000;
-  --bs-btn-bg: #ff6a00;
-  --bs-btn-border-color: #ff6a00;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: #ff8026;
-  --bs-btn-hover-border-color: #ff791a;
   --bs-btn-focus-shadow-rgb: 217, 90, 0;
   --bs-btn-active-color: #000;
-  --bs-btn-active-bg: #ff8833;
-  --bs-btn-active-border-color: #ff791a;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #000;
-  --bs-btn-disabled-bg: #ff6a00;
-  --bs-btn-disabled-border-color: #ff6a00;
 }
 
 .btn-success {
@@ -8132,7 +8116,7 @@ textarea.form-control-lg {
 
 .bg-secondary {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+  background-color: rgb(111 140 209) !important;
 }
 
 .bg-success {
@@ -10933,10 +10917,18 @@ header.masthead .bg-circle-4 {
   transition: transform 0.3s ease; /* Transición suave en hover */
 }
 
+/* Desactivar hover globalmente */
 .card:hover {
-  transform: scale(1.05); /* Escala la carta ligeramente al pasar el mouse */
+  transform: none;
+  box-shadow: none;
 }
 
+/* Activar hover solo en la página de VTubers */
+.page-vtubers .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
 /* Imágenes dentro de las cartas */
 .card-img-top {
   height: 200px; /* Tamaño uniforme para las imágenes */
@@ -10972,4 +10964,58 @@ header.masthead .bg-circle-4 {
   border-radius: 5px; /* Bordes redondeados */
 }
 
+/* Estilo general para las tarjetas */
+.card {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Solo aplicamos el hover a las tarjetas con la clase 'user-card' */
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor del hover */
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Mostrar el hover solo cuando se pasa el mouse sobre la tarjeta con la clase 'user-card' */
+.user-card:hover .hover-overlay {
+  opacity: 1;
+}
+
+/* Botón dentro del hover */
+.hover-overlay a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: transparent;
+  transition: background 0.3s, color 0.3s;
+}
+
+.hover-overlay a:hover {
+  background: white;
+  color: black;
+}
 

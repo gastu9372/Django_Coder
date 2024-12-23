@@ -35,9 +35,8 @@
                         <li class="nav-item"><a class="nav-link" href="{% url "Vtubers" %}">Vtubers</a></li>
 
                         {% if user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="{% url "Mods" %}">Mods</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url "Users" %}">Users</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url "Posts" %}">Posts</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'mostrar-posts' %}">Posts</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url "Perfil" %}">Perfil</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url "mostrar-mensajes" %}">Mensajes</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url "Logout" %}">Log Out</a></li>
@@ -74,9 +73,8 @@
                     <li class="list-inline-item"><a class="text-white" href="{% url 'Vtubers' %}">Vtubers</a></li>
         
                     {% if user.is_authenticated %}
-                        <li class="list-inline-item"><a class="text-white" href="{% url 'Mods' %}">Mods</a></li>
                         <li class="list-inline-item"><a class="text-white" href="{% url 'Users' %}">Users</a></li>
-                        <li class="list-inline-item"><a class="text-white" href="{% url 'Posts' %}">Posts</a></li>
+                        <li class="list-inline-item"><a class="text-white" href="{% url 'mostrar-posts' %}">Posts</a></li>
                         <li class="list-inline-item"><a class="text-white" href="{% url 'Perfil' %}">Perfil</a></li>
                         <li class="list-inline-item"><a class="text-white" href="{% url 'Logout' %}">Log Out</a></li>
                     {% else %}

@@ -1,0 +1,108 @@
+{% extends "app_coder/base.html" %}
+
+{% block Title %}
+{{ post.titulo }} | Post VtuberWorld
+{% endblock Title %}
+
+{% block content %}
+<div class="page-posts">
+    <div class="container my-4">
+        <div class="row">
+            <!-- Contenido del Post -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between">
+                        <h4 class="mb-0">{{ post.titulo }}</h4>
+                        {% if es_autor or es_admin %}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                ⋮
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                {% if es_autor %}
+                                    <li><a class="dropdown-item" href="{% url 'editar-post' post.id %}">Editar Post</a></li>
+                                {% endif %}
+                                {% if es_admin %}
+                                    <li>
+                                        <form action="{% url 'eliminar-post' post.id %}" method="POST" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="dropdown-item">Eliminar Post</button>
+                                        </form>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    {% if post.editado %}
+                        <p class="text-muted px-3 pt-2"><small>Editado</small></p>
+                    {% endif %}
+                    <div class="card-body">
+                        <p class="card-text"><strong>Contenido:</strong> {{ post.contenido }}</p>
+                        <p class="card-text"><strong>Autor:</strong> {{ post.autor }}</p>
+
+                        {% if post.foto %}
+                            <div class="mb-3">
+                                <img src="{{ post.foto.url }}" alt="Foto del post" class="img-fluid rounded border">
+                            </div>
+                        {% endif %}
+                        <p class="card-text text-muted">
+                            <small>{{ post.fecha_subida|date:"d M Y H:i" }}</small>
+                        </p>
+                    </div>
+
+                    <!-- Sección de Comentarios -->
+                    <div class="card-footer">
+                        <!-- Formulario de Comentarios -->
+                        <div class="mb-4">
+                            <h5>Deja tu comentario:</h5>
+                            <form method="POST" enctype="multipart/form-data" class="mb-4">
+                                {% csrf_token %}
+                                {{ comentario_form.as_p }}
+                                <button type="submit" class="btn btn-primary">Comentar</button>
+                            </form>
+                        </div>
+
+                        <!-- Mostrar Comentarios -->
+                        <h5>Comentarios:</h5>
+                        <div>
+                            {% for comentario in comentarios %}
+                                <div class="comment mb-3 border-bottom pb-3">
+                                    <p><strong>{{ comentario.autor.username }}:</strong> {{ comentario.contenido }}</p>
+                                    {% if comentario.foto %}
+                                        <img src="{{ comentario.foto.url }}" alt="Foto del comentario" class="img-fluid rounded mb-2">
+                                    {% endif %}
+                                    <p class="text-muted"><small>{{ comentario.fecha_subida|date:"d M Y H:i" }}</small></p>
+                                </div>
+                            {% empty %}
+                                <p>No hay comentarios aún.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Otros Posts -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h5>Otros Posts</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for otro_post in posts %}
+                                {% if otro_post != post %}
+                                    <li class="list-group-item">
+                                        <a href="{% url 'detalle-post' otro_post.id %}">{{ otro_post.titulo }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

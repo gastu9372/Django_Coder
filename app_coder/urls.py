@@ -7,9 +7,7 @@ urlpatterns = [
     path('', views.index, name="Inicio"),
     
     # Relacionados a usuarios
-    path('mods/', views.mods, name="Mods"),
     path('users/', views.users, name="Users"),
-    path('posts/', views.posts, name="Posts"),
     
     # Vtuber
     path('vtubers/', views.vtubers, name ="Vtubers"),

@@ -109,12 +109,9 @@ def vtubers(request):
     return render(request, "app_coder/vtubers.html", {"vtubers":vtubers})
 
 @login_required
-def mods(request):
-    return render(request, "app_coder/mods.html")
-
-@login_required
 def users(request):
-    return render(request, "app_coder/users.html")
+    usuarios = User.objects.select_related('profile').all
+    return render(request, "app_coder/users.html", {"usuarios":usuarios})
 
 @login_required
 def posts(request):
