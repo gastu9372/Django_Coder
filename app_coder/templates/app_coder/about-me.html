@@ -1,0 +1,34 @@
+{% extends "app_coder/base.html" %}
+{% load static %}
+{% block Title %}
+About Me | VtuberWorld
+{% endblock Title %}
+
+{% block content %}
+<div class="container py-5 mb-5">
+    <h1 class="text-center mb-4">Sobre Mí</h1>
+    
+
+    <p class="lead text-center text-muted mb-4">VtuberWorld - Gastón Lorenzani</p>
+    
+
+    <div class="text-center mb-4">
+        <img src="{% static 'App_coder/assets/img/yo.jpg' %}" alt="Imagen sobre mí" class="img-fluid rounded-circle shadow-lg" style="width: 200px; height: 200px; object-fit: cover;">
+    </div>
+    
+    <!-- Contenido con texto alineado y un fondo suave -->
+    <div class="bg-light p-4 rounded-lg shadow-sm">
+        <p class="lead">
+            Mi nombre es <strong>Gastón Lorenzani</strong> y este es mi proyecto <strong>VtuberWorld</strong>. 
+            Soy un estudiante de licenciatura en sistemas. Aunque aún siento que tengo mucho por aprender en el mundo de la programación, me inscribí en el curso de Python de <em>CoderHouse</em> y me apasionó el desarrollo backend y todo lo que se puede lograr. Mi objetivo es poder trabajar en lo que me gusta, como lo fue crear este proyecto final, y seguir aprendiendo cosas nuevas cada día.
+        </p>
+        <br>
+        <p class="lead">
+            <strong>VtuberWorld</strong> es un proyecto inspirado en los vtubers. Como su nombre indica, esta plataforma tiene la finalidad de reunir a los fans de los vtubers y ofrecerles un espacio donde puedan conocer más sobre ellos. La idea es crear una comunidad similar a Reddit, pero enfocada exclusivamente en los vtubers. Aquellos que moderan pueden agregar vtubers a la sección correspondiente, mientras que los usuarios no logueados pueden expl...
+        </p>
+    </div>
+</div>
+
+<div style="height: 50px;"></div>
+
+{% endblock content %}

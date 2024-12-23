@@ -5,6 +5,7 @@ from django.urls import path
 urlpatterns = [
     # Inicio
     path('', views.index, name="Inicio"),
+    path('about-me', views.about_me, name="about-me"),
     
     # Relacionados a usuarios
     path('users/', views.users, name="Users"),

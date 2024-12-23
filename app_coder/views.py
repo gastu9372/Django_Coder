@@ -155,3 +155,9 @@ def editar_vtuber(request, pk):
         post_vtuber_form = post_vtuber(instance=vtuber)
     
     return render(request,"app_coder/forms/edit_vtuber.html", {"post_vtuber": post_vtuber_form})
+
+
+
+
+def about_me(request):
+    return render(request, "app_coder/about-me.html")

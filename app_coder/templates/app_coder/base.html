@@ -33,6 +33,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url "Inicio" %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url "Vtubers" %}">Vtubers</a></li>
+                        
 
                         {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="{% url "Users" %}">Users</a></li>
@@ -44,7 +45,7 @@
                             <li class="nav-item"><a class="nav-link" href="{% url "Register" %}">Sign Up</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}?next={{ request.path }}">Log In</a></li>
                         {% endif %}
-
+                        <li class="nav-item"><a class="nav-link" href={% url "about-me" %}>About Me</a></li>
 
                     </ul>
                 </div>
@@ -81,6 +82,7 @@
                         <li class="list-inline-item"><a class="text-white" href="{% url 'Register' %}">Sign Up</a></li>
                         <li class="list-inline-item"><a class="text-white" href="{% url 'Login' %}?next={{ request.path }}">Log In</a></li>
                     {% endif %}
+                    <li class="list-inline-item"><a class="text-white" href={% url "about-me" %}>About Me</a></li>
                 </ul>
                 <ul class="list-inline text-center text-white">
                     <li class="list-inline-item"><a href="https://www.instagram.com/gaston_lorenzani/" class="text-white"><i class="fab fa-instagram fa-2x"></i></a></li>

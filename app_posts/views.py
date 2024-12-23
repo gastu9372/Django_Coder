@@ -20,12 +20,14 @@ def crear_post(request):
         form = PostForm()
     return render(request, "app_posts/forms/crear-o-editar.html", {"form":form})
 
+@login_required
 def mostrar_posts(request):
     
     posts = Post.objects.all()
     
     return render(request, "app_posts/mostrar-posts.html", {"posts":posts})
 
+@login_required
 def detalle_post(request, id):
     post = get_object_or_404(Post, id=id)
     posts = Post.objects.exclude(id=id)
@@ -47,6 +49,7 @@ def detalle_post(request, id):
     comentarios = post.comentario.all
     return render(request, "app_posts/detalle-post.html", {"post":post, "posts": posts,"es_autor": es_autor, "es_admin": es_admin, "comentarios": comentarios, "comentario_form":comentario_form})
 
+@login_required
 def editar_post(request, pk):
     post = get_object_or_404(Post,pk=pk)
     if post.autor != request.user:
@@ -63,6 +66,7 @@ def editar_post(request, pk):
         form=PostForm(instance=post)
     return render(request, "app_posts/forms/editar-post.html",{"form":form})
 
+@login_required
 def eliminar_post(request, id):
     post = Post.objects.get(id=id)
     post.delete()
