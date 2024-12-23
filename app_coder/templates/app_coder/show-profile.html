@@ -33,8 +33,20 @@ Perfil | VtuberWorld
         </div>
     </div>
 </div>
-
-
+{% if messages %}
+<div aria-live="polite" aria-atomic="true" class="position-fixed top-50 start-50 translate-middle p-3" style="z-index: 1050;">
+    {% for message in messages %}
+    <div class="toast align-items-center text-bg-{{ message.tags }} border-0" role="alert" aria-live="assertive" aria-atomic="true" 
+        data-bs-autohide="true" data-bs-delay="3000"> <!-- Esto debería cerrar el toast automáticamente en 3 segundos -->
+        <div class="d-flex">
+            <div class="toast-body text-center">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 
 
 {% endblock content %}

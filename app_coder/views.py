@@ -70,6 +70,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             next_url = next_url or 'Inicio'  
+            messages.success(request, "Sesion iniciada correctamente")
             return redirect(next_url)
         else:
             return render(request, "app_coder/forms/login.html", {
