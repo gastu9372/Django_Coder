@@ -52,10 +52,10 @@ def detalle_post(request, id):
 @login_required
 def editar_post(request, pk):
     post = get_object_or_404(Post,pk=pk)
+    # Valido que el usuario que lo quiera editar sea el propietario
     if post.autor != request.user:
         return redirect('mostrar-posts')
-    
-
+    # Logica del edit del comentario
     if request.method =="POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():

@@ -23,6 +23,8 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 {% if es_autor %}
                                     <li><a class="dropdown-item" href="{% url 'editar-post' post.id %}">Editar Post</a></li>
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item">Eliminar Post</button>
                                 {% endif %}
                                 {% if es_admin %}
                                     <li>

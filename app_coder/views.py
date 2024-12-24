@@ -20,6 +20,8 @@ from .models import Vtuber, Profile
 
 # Create your views here.
 
+# Views relaciondas al inicio de sesion, registro y al perfil
+
 @login_required
 def show_profile(request):
     return render(request, "app_coder/show-profile.html")
@@ -61,6 +63,8 @@ def change_password(request):
         
     return render(request, "app_coder/forms/change-password.html", {"form_password": form_password})
 
+
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -81,7 +85,7 @@ def login_view(request):
         next_url = request.GET.get('next', '')
         return render(request, "app_coder/forms/login.html", {"next": next_url})
 
-
+@login_required
 def user_logout(request):
     logout(request)
     return redirect("Inicio")
@@ -96,8 +100,22 @@ def register_view(request):
         form = UserCreationForm()
     return render(request, "app_coder/forms/register.html", {"form": form})
 
+# Views para moverse en el navbar
+
 def index(request):
     return render(request, "app_coder/index.html")
+
+@login_required
+def users(request):
+    usuarios = User.objects.select_related('profile').all
+    return render(request, "app_coder/users.html", {"usuarios":usuarios})
+
+@login_required
+def posts(request):
+    return render(request, "app_coder/posts.html")
+
+def about_me(request):
+    return render(request, "app_coder/about-me.html")
 
 def vtubers(request):
     vtubers = Vtuber.objects.all()
@@ -108,15 +126,6 @@ def vtubers(request):
         vtubers = Vtuber.objects.all()
         
     return render(request, "app_coder/vtubers.html", {"vtubers":vtubers})
-
-@login_required
-def users(request):
-    usuarios = User.objects.select_related('profile').all
-    return render(request, "app_coder/users.html", {"usuarios":usuarios})
-
-@login_required
-def posts(request):
-    return render(request, "app_coder/posts.html")
 
 @login_required
 def formulario_vtuber_api(request):
@@ -133,6 +142,9 @@ def formulario_vtuber_api(request):
         
     contexto= {"post_vtuber": post_vtuber_form}
     return render(request, "app_coder/forms/formulario.html", contexto)
+
+
+# Vistas de vtuber para administradores
 
 @login_required
 def eliminar_vtuber(request, id):
@@ -159,6 +171,3 @@ def editar_vtuber(request, pk):
 
 
 
-
-def about_me(request):
-    return render(request, "app_coder/about-me.html")

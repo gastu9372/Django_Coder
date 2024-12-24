@@ -5,11 +5,13 @@ from django.contrib.auth.decorators import login_required
 from .models import Mensaje
 # Create your views here.
 
+
+# Manejo de los manesajes
+
 @login_required
 def enviar_mensaje(request):
     
     usuarios = User.objects.exclude(username= request.user.username)
-    
     if request.method == "POST":
         destinatario_username = request.POST.get("destinatario")
         contenido = request.POST.get("contenido")
