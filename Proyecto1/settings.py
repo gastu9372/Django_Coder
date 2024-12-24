@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-++!(c8kh-6cf_f!+-nqwp@(=9---p-&_r-1x+*byhc#ks!hhgi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://app.appliku.com/dashboard/team/gaston-touwrhgb/applications/2742"]
 
 
 # Application definition
